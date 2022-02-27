@@ -1,0 +1,21 @@
+{
+    "name": "daniel/luis-simoes",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Candido",
+            "email": "danielcandidocel@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "7.4.*",
+        "illuminate/events": "8.*",
+        "illuminate/routing": "8.*",
+        "illuminate/database": "8.*",
+        "twig/twig": "^3.0"
+    }
+}

@@ -1,0 +1,73 @@
+{
+"TBL_00": [
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12293457",
+		"TOT_STOCK" : 347403,
+		"TOTAL_LINEAS" : 725
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12168420",
+		"TOT_STOCK" : 314091,
+		"TOTAL_LINEAS" : 657
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12487249",
+		"TOT_STOCK" : 891651,
+		"TOTAL_LINEAS" : 608
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12329675",
+		"TOT_STOCK" : 98011,
+		"TOTAL_LINEAS" : 606
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12447042",
+		"TOT_STOCK" : 53160,
+		"TOTAL_LINEAS" : 563
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12393598",
+		"TOT_STOCK" : 244368,
+		"TOTAL_LINEAS" : 512
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12445862",
+		"TOT_STOCK" : 149470,
+		"TOTAL_LINEAS" : 510
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12367378",
+		"TOT_STOCK" : 113607,
+		"TOTAL_LINEAS" : 505
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12236255",
+		"TOT_STOCK" : 120720,
+		"TOTAL_LINEAS" : 502
+	},
+	{
+		"PLATAFORMA" : "CG",
+		"CLIENTE" : "1160",
+		"ARTICULO" : "12168426",
+		"TOT_STOCK" : 224262,
+		"TOTAL_LINEAS" : 469
+	}
+]}

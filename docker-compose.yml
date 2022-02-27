@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: daniel
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: ls
+    container_name: ls-app
+    restart: always
+    working_dir: /var/www/public
+    volumes:
+      - ./:/var/www
+    networks:
+      - ls
+
+  db:
+    image: mariadb:10.5
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_DATABASE: ls
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    ports:
+        - 3306:3306
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - ls
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - ls
+
+networks:
+  ls:
+    driver: bridge
