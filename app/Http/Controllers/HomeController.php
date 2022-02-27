@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Detalles;
 use App\Models\Matriculas;
+use App\Models\Totales;
 
 class HomeController
 {
@@ -11,6 +12,7 @@ class HomeController
     {
         $loader = new \Twig\Loader\FilesystemLoader('views');
         $twig = new \Twig\Environment($loader);
-        echo $twig->render('home.html', ['the' => 'variables', 'go' => 'here']);
+        $totales = Totales::all();
+        echo $twig->render('home.html', ['totales' => $totales]);
     }
 }

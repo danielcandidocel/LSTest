@@ -4,9 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Luis Simões</title>
 </head>
 <body>
-<h1>Teste Twig2</h1>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src='../images/logo.jpg' height='70'></a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Teste Luis Simões - Daniel Candido</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">PLATAFORMA</th>
+                            <th scope="col">CLEINTE</th>
+                            <th scope="col">ARTICULO</th>
+                            <th scope="col">TOT_STOCK</th>
+                            <th scope="col">TOTAL_LINEAS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in totales %}
+                        <tr>
+                            <th scope="row">{{ item.plataforma }}</th>
+                            <td>{{ item.cliente }}</td>
+                            <td onclick="articulo({{ item.articulo }})" style='cursor: pointer'>{{ item.articulo }}</td>
+                            <td>{{ item.tot_stock }}</td>
+                            <td>{{ item.total_lineas }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row d-none" id='detalles'>
+            <div class="col">
+                <table class="table table-hover datatable" id='detallesTable'>
+                    <thead>
+                        <tr>
+                            <th scope="col">PLATAFORMA</th>
+                            <th scope="col">CLEINTE</th>
+                            <th scope="col">ARTICULO</th>
+                            <th scope="col">ALMACEN</th>
+                            <th scope="col">UBICACION</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">LOTE</th>
+                            <th scope="col">UNIDADES</th>
+                            <th scope="col">SSCC</th>
+                        </tr>
+                    </thead>
+                    <tbody id='detalesTableData'>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossOrigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+<script>
+
+    function articulo(item) {
+        $('#detallesTable').dataTable().fnClearTable();
+        $('#detallesTable').dataTable().fnDestroy();
+        $('#detalles').show().removeClass('d-none').addClass('d-flex');
+        $.ajax({
+            url : "http://localhost/api/articulo/"+item,
+            type : 'get',
+        })
+        .done(function(data){
+            let html = '';
+            $("#detalesTableData").children().remove();
+            for (let x in data) {
+                html += `<tr>
+                            <td>${data[x].plataforma}</td>
+                            <td>${data[x].cliente}</td>
+                            <td>${data[x].articulo}</td>
+                            <td>${data[x].almacen}</td>
+                            <td>${data[x].ubicacion}</td>
+                            <td>${data[x].id}</td>
+                            <td>${data[x].lote}</td>
+                            <td>${data[x].unidades}</td>
+                            <td>${(data[x].matriculas === null) ? '' : data[x].matriculas.sscc}</td>
+                        </tr>`
+            }
+            $("#detalesTableData").append(html);
+            $('#detallesTable').DataTable();
+        })
+        .fail(function(jqXHR, textStatus, data){
+            console.log(data)
+        });
+    }
+    $(document).ready(function() {
+
+    } );
+</script>
 </html>

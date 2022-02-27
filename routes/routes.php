@@ -9,7 +9,7 @@ use Illuminate\Routing\Router;
 
 $router->get('/', [HomeController::class, 'index']);
 
-$router->group(['prefix' => 'api'], function (Router $router) {
+$router->middleware()->group(['prefix' => 'api'], function (Router $router) {
     $router->get('/totales', [TotalesController::class, 'index']);
     $router->get('/articulo/{id}', [DetallesController::class, 'search']);
 });
