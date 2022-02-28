@@ -16,6 +16,8 @@
         "illuminate/events": "8.*",
         "illuminate/routing": "8.*",
         "illuminate/database": "8.*",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "firebase/php-jwt": "^6.0",
+        "phpfastcache/phpfastcache": "^8.1"
     }
 }

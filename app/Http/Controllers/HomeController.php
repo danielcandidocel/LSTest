@@ -2,17 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detalles;
-use App\Models\Matriculas;
 use App\Models\Totales;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Phpfastcache\Helper\Psr16Adapter;
 
 class HomeController
 {
-    public function index()
+    private \Twig\Environment $twig;
+    private Psr16Adapter $cache;
+
+    public function __construct()
     {
         $loader = new \Twig\Loader\FilesystemLoader('views');
-        $twig = new \Twig\Environment($loader);
-        $totales = Totales::all();
-        echo $twig->render('home.html', ['totales' => $totales]);
+        $this->twig = new \Twig\Environment($loader);
+    }
+
+    /**
+     * @return void
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function index()
+    {
+        echo $this->twig->render('index.html');
+    }
+
+    /**
+     * @return bool
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function home()
+    {
+        $user = new UserController();
+        if ($token = $user->verifyToken()) {
+            $check = $user->checkJWT($token);
+            if ($check) {
+                $totales = Totales::all();
+                echo $this->twig->render('home.html', ['totales' => $totales]);
+                return true;
+            }
+        }
+        echo $this->twig->render('index.html');
     }
 }

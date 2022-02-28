@@ -12,7 +12,9 @@ In files already exists the files for create the images necessary for porject
 - Initial Docker `docker-compose up -build -d`
 - Install the libraries with command `composer install`
 - Is necessary create a database with name ls
-- in Docker go to the folder database and run the command `php Seeder.php`for create the tables and include the registers in tables
+- In Docker go to the folder database and run the command `php Seeder.php`for create the tables and include the registers in tables by files .json
+- URL_BASE: `http://localhost`
+- User default for test: `email => test@ls.com, password => 123456`
 
 ### Execution
 - In browser open the url localhost
@@ -23,3 +25,6 @@ For this project was use the libraries:
 - illuminate/routing: for create the routes of projects
 - illuminate/database: for create the migrations of projects
 - twig/twig: for render the views of projects
+- firebase/php-jwt: for implements JWT
+- phpfastcache/phpfastcache: for working with cache
+

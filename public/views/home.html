@@ -11,6 +11,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img src='../images/logo.jpg' height='70'></a>
+            <button class='btn btn-link' onclick='logout()'>Logout</button>
         </div>
     </nav>
     <div class="container">
@@ -84,7 +85,6 @@
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
 <script>
-
     function articulo(item) {
         $('#detallesTable').dataTable().fnClearTable();
         $('#detallesTable').dataTable().fnDestroy();
@@ -92,6 +92,9 @@
         $.ajax({
             url : "http://localhost/api/articulo/"+item,
             type : 'get',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
         })
         .done(function(data){
             let html = '';
@@ -116,8 +119,13 @@
             console.log(data)
         });
     }
-    $(document).ready(function() {
-
-    } );
+    function logout() {
+        localStorage.removeItem('token');
+        $.ajax({
+            url : "http://localhost/api/logout",
+            type : "get"
+        })
+        window.location.href = 'http://localhost'
+    }
 </script>
 </html>
